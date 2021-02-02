@@ -1,0 +1,84 @@
+.ExcelTableXP {
+	border: 1px solid #716F64;
+	border-width: 1px 0px 0px 1px;
+	font-size: 9pt;
+	font-family: arial;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+/*.ExcelTableXP THEAD TH {
+	background-color: #EFEDDE !important;
+	border: 1px solid #ACA899 !important;
+	border-width: 0px 1px 1px 0px !important;
+	font-weight: normal !important;
+	text-align:center !important;
+	font-size:9pt
+}*/
+
+.ExcelTableXP TH {
+	background-color: #EFEDDE !important;
+	border: 1px solid #ACA899 !important;
+	border-width: 0px 1px 1px 0px !important;
+	font-weight: normal !important;
+	text-align:center !important;
+	font-size:10pt;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	
+}
+
+.ExcelTableXP TD {
+	border: 0px;
+	background-color: white;
+	border: 1px solid #C0C0C0;
+	border-width: 0px 1px 1px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.ExcelTableXP TD.heading {
+	background-color: #EFEDDE;
+	text-align: center;
+	padding: 0px 0px 0px 0px;
+	border: 1px solid #ACA899;
+	border-width: 0px 1px 1px 0px;
+}
+
+.formGroup{
+	width:100%;
+	margin-bottom:10px
+}
+
+.formGroup .formLabel{
+	font-size:10pt;min-width:150px;float:left;
+		text-align:right;margin-right:5px;
+		font-weight:bold;
+		/*font-family:Khand;*/
+		font-family:arial
+}
+
+.excelForm{
+	border:none;height:20px;margin:0px !important;
+}
+
+.excelFormDiv{
+	border:1px solid #C0C0C0;margin:0px !important;
+	width:33%;font-size:10pt;padding:3px 4px;border-radius:0px !important
+}
+
+.excelFormDiv-md{
+	border:1px solid #C0C0C0;height:22px;margin:0px !important;
+	width:66%;font-size:10pt;padding:2px
+}
+
+.excelFormDivTXT{
+	border:1px solid #C0C0C0;height:22px;margin:0px !important;
+	width:33%;font-size:10pt;padding:2px
+}
+
+.excelFormDivTXT-md{
+	border:1px solid #C0C0C0;margin:0px !important;
+	width:66%;font-size:10pt;padding:2px
+}
