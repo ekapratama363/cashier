@@ -70,7 +70,7 @@
                                                         <td style="width:1%"></td>
                                                         <td style="width:79%">
                                                             <input type="text" class="form-control" name="transaction_number" 
-                                                                value="<?php echo set_value('transaction_number'); ?>"
+                                                                value="<?php echo $this->session->userdata('username'); ?>"
                                                                 readonly>
                                                         </td>
                                                     </tr>
@@ -80,7 +80,7 @@
                                                         <td style="width:1%"></td>
                                                         <td style="width:79%">
                                                             <input type="text" class="form-control" name="transaction_number" 
-                                                                value="<?php echo set_value('transaction_number'); ?>"
+                                                                value="<?php echo date('Y-m-d H:i:s'); ?>"
                                                                 readonly>
                                                         </td>
                                                     </tr>
@@ -103,7 +103,7 @@
                                                         <th style="width:30%">Phone</th>
                                                         <td style="width:1%"></td>
                                                         <td style="width:79%">
-                                                            089630158851
+                                                            -
                                                         </td>
                                                     </tr>
 
@@ -111,7 +111,7 @@
                                                         <th style="width:30%">Address </th>
                                                         <td style="width:1%"></td>
                                                         <td style="width:79%">
-                                                            Address
+                                                            -
                                                         </td>
                                                     </tr>
                                                 </table>

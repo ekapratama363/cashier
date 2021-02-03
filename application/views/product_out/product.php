@@ -265,7 +265,9 @@
 
         var refund = parseInt(pay) - parseInt(total);
         
-        $('#refund').val(refund);
+        refund < 0 ? $('#refund').val(0) : $('#refund').val(refund);
+
+        
     }
 
     function deleteRowProductTable(row) {
