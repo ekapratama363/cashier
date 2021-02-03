@@ -53,16 +53,20 @@
                     <td>
                         <input type="text" name="price[1]" id="price1"
                             value="200"
-                            style="text-align:right; width: 100%; border: none" required readonly>
+                            style="text-align:right; width: 100%; border: none; padding: 10px"
+                            required readonly>
                     </td>
                     <td>
-                        <input type="number" name="quantity[1]" id="quantity1" style="text-align:right; width: 100%;"
-                            onchange="onChangeQuantity(1, this)"
+                        <input type="number" name="quantity[1]" id="quantity1" 
+                            style="text-align:right; width: 100%;"
+                            onkeyup="updateTotalPrice(1, this)"
                             required>
                     </td>
                     <td>
                         <input type="text" name="subtotal[1]" id="subtotal1"
-                            style="text-align:right; width: 100%; border: none" required readonly>
+                            style="text-align:right; width: 100%; border: none; padding: 10px"
+                            onchange="updateTotalPrice(1, this)"
+                            required readonly>
                     </td>
                     <td>
                         <button type="button" class="btn btn-danger btn-sm"
@@ -86,20 +90,27 @@
         <tr>
             <td style="padding: 10px">Total</td>
             <td>
-                <input type="number" name="total" value="0" class="form-control"
-                    style="border:none; text-align:right;">
+                <input type="number" name="total" 
+                    id="total"
+                    value="0" class="form-control"
+                    style="border:none; text-align:right;" readonly>
             </td>
         </tr>
             <td style="padding: 10px">Pay</td>
             <td>
-                <input type="number" name="pay" value="0" class="form-control"
+                <input type="number" name="pay" 
+                    id="pay"
+                    value="0" class="form-control"
+                    onkeyup="onKeyUpPay()"
                     style="border:none; text-align:right;">
             </td>
         <tr>
             <td style="padding: 10px">Refund</td>
             <td>
-                <input type="number" name="refund" value="0" class="form-control"
-                    style="border:none; text-align:right;">
+                <input type="number" name="refund"
+                    id="refund" 
+                    value="0" class="form-control"
+                    style="border:none; text-align:right;" readonly>
             </td>
         </tr>
     </thead>
@@ -135,7 +146,7 @@
             <input type="text" 
                 class="no${index}"
                 name="no[${index}]" id="no${index}" 
-                value="${index}" 
+                value="${lastRowIndex + 1}" 
                 readonly
                 style="text-align:center; border: none; width: 100%";>
         `;
@@ -165,20 +176,21 @@
                             name="price[${index}]" 
                             id="price${index}" 
                             value="300"
-                            style="text-align:right; width: 100%;border: none"
+                            style="text-align:right; width: 100%; border: none; padding: 10px"
                             required readonly>`;
 
         cell6.innerHTML = `<input type="number" 
                             name="quantity[${index}]" 
                             id="quantity${index}" 
                             style="text-align:right; width: 100%;"
-                            onchange="onChangeQuantity(${index}, this)"
+                            onkeyup="updateTotalPrice(${index}, this)"
                             required>`;
 
         cell7.innerHTML = ` <input type="text" 
                             name="subtotal[${index}]" 
                             id="subtotal${index}" 
-                            style="text-align:right; width: 100%;border: none"
+                            onchange="updateTotalPrice(${index}, this)"
+                            style="text-align:right; width: 100%; border: none; padding: 10px"
                             required readonly>`;
 
         cell8.innerHTML = `<button type="button" class="btn btn-danger btn-sm" onclick="deleteRowProductTable(this)">Remove</button>`;
@@ -228,7 +240,7 @@
         });
     }
 
-    function onChangeQuantity(index, field) {
+    function updateTotalPrice(index, field) {
 
         var id_product_quantity_selected = field.value ? field.value : 0;
         var price = $(`#price${index}`).val();
@@ -237,7 +249,23 @@
 
         $(`#subtotal${index}`).val(subtotal);
 
-        // console.log(id_product_quantity_selected)
+        var count_subtotal = [];
+        for(var i = 1; i <= index; i++) {
+            count_subtotal.push($(`#subtotal${i}`).val());
+        }
+
+        var total = count_subtotal.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+        
+        $(`#total`).val(total);
+    }
+
+    function onKeyUpPay() {
+        var pay = $('#pay').val();
+        var total = $('#total').val();
+
+        var refund = parseInt(pay) - parseInt(total);
+        
+        $('#refund').val(refund);
     }
 
     function deleteRowProductTable(row) {
