@@ -42,6 +42,7 @@
                         <a href="<?php echo base_url(); ?>product/create" class="btn btn-primary btn-sm" title="Add User"><i class="fa fa-plus"></i></a>
                     
                         <button id="deleteAll" type="button" class="btn btn-danger btn-sm" title="Multiple Delete" name="multiple_delete"><i class="fa fa-trash"></i></button>
+                        <button id="printAll" type="button" class="btn btn-success btn-sm" title="Multiple Print" name="multiple_print"><i class="fa fa-file-pdf-o"></i></button>
                     </div>
                             
                     <div class="table-responsive m-t-40">

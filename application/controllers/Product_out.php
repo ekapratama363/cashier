@@ -342,35 +342,16 @@ class Product_out extends CI_Controller {
 
     public function print_or_multiple_delete()
     {
-        
-        // $this->load->library('pdf');
-    
         $type     = $this->input->post('type');
         $array_id = $this->input->post('data');
 
-        // if($type == 'print') {
+        if($type == 'print') {
 
-        //     $guest_lists = $this->Product_model->get_guest_by_array_id($array_id);
-    
-        //     $data['values'] = array_chunk($guest_lists, 3);
-    
-        //     // echo '<pre>';
-        //     // var_dump($data['values']);
-        //     // die();
-        //     // $customPaper = array(0,0,360,360);
-        //     // $this->pdf->setPaper($customPaper);
-        //     $this->pdf->set_paper('A4', 'potrait');
-        //     $this->pdf->filename = 'invitation-label.pdf';
-        //     // $this->pdf->load_view('layouts/pdf/pdf', $data);
-        //     $this->pdf->load_view('guest/label_pdf', $data);
-    
-        //     // $this->load->view('guest/label_pdf');
-        //     // echo '<pre>';
-        //     // var_dump( $this->input->post('data'));
+            $this->QRCode($array_id);
 
-        // }
+        }
 
-        // if($type == 'delete') {
+        if($type == 'delete') {
 
             $delete = $this->Product_model->update_product_by_array_id($array_id);
 
@@ -381,7 +362,25 @@ class Product_out extends CI_Controller {
                 $this->session->set_flashdata('failed', 'delete data failed');
                 redirect(base_url("product/index"));
             }
-        // }
+        }
     }
 
+    public function QRCode($array_id = NULL)
+    {   
+        $products = [];
+
+        foreach($array_id as $id) {
+            $products[] = $this->Product_model->get_product_by_id($id);
+        }
+
+        $data['products'] = $products; 
+        
+        $this->load->library('Pdf');
+        
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "ProductQRCode.pdf";
+
+        $this->pdf->load_view("product/report/qrCode", $data);
+        // $this->load->view("product/report/qrCode", $data);
+    }
 }
