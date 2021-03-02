@@ -11,7 +11,7 @@
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Home</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>home_banner">History Chart</a></li>
+                        <li><a href="<?php echo base_url(); ?>report/dashboard">Dashboard</a></li>
                     </ul>
                 </li>
 
@@ -46,8 +46,9 @@
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-pie-chart"></i><span class="hide-menu">Report</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <!-- <li><a href="<?php echo base_url(); ?>product_in">Product In</a></li>
-                        <li><a href="<?php echo base_url(); ?>product_out">Product Out</a></li> -->
+                        <li><a href="<?php echo base_url(); ?>report/index/stock">Stock</a></li>
+                        <li><a href="<?php echo base_url(); ?>report/index/product_in">Product In</a></li>
+                        <li><a href="<?php echo base_url(); ?>report/index/product_out">Product Out</a></li>
                     </ul>
                 </li>
 

@@ -48,7 +48,7 @@
                                 <th style="width: 5%">No</th>
                                 <th>Category</th>
                                 <th>Description</th>
-                                <th>Image</th>
+                                <th>Sku</th>
                                 <th style="width: 5%">Action</th>
                             </tr>
                         </thead>
@@ -84,7 +84,7 @@
             //  ], 
             //"scrollCollapse": true,
             "ajax": {
-                "url": "<?php echo base_url(); ?>product_category/ajax_list_product_category",
+                "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product_category",
                 "dataType": "json",
                 "type": "POST",
                 // "data": {
@@ -95,7 +95,7 @@
                 {"data": "no"},
                 {"data": "category"},
                 {"data": "description"},
-                {"data": "image"},
+                {"data": "description"},
                 {"data": "action"},
             ],
             // columnDefs : [
