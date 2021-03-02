@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Invitation</a></li>
-                <li class="breadcrumb-item active"><a href="{{ url('user') }}">product</a></li>
+                <li class="breadcrumb-item active"><a href="{{ url('user') }}">product_category</a></li>
                 <li class="breadcrumb-item active">Create</li>
             </ol>
         </div> -->
@@ -35,7 +35,7 @@
                         <h4 class="m-b-0 text-white">Edit</h4>
                     </div>
                     <div class="card-body">
-                        <?php echo form_open_multipart($this->uri->segment(1).'/update'); ?>
+                        <?php echo form_open_multipart($this->uri->segment(1) . '/update'); ?>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -46,8 +46,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Title</label>
-                                                    <input type="text" class="form-control" name="title" value="<?php echo isset($value->title) ? $value->title : ''; ?>">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" name="name" value="<?php echo isset($value->name) ? $value->name : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -55,27 +55,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <input type="text" class="form-control" name="description" value="<?php echo isset($value->description) ? $value->description : ''; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Icon</label>
-                                                    <input type="text" class="form-control" name="icon" value="<?php //echo isset($value->icon) ? $value->icon : ''; ?>">
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="image">Image</label><br />
-                                                    <input type="file" name="image" id="image">
-                                                    <input type="hidden" name="image_hidden" value="<?php echo isset($value->image) ? $value->image : ''; ?>">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" name="email" value="<?php echo isset($value->email) ? $value->email : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -83,19 +64,26 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/product/' . $value->image : ''; ?>" width='300px' height='150px' alt="<?php echo $value->image; ?>">
+                                                    <label>Mobile</label>
+                                                    <input type="text" class="form-control" name="mobile" value="<?php echo isset($value->mobile) ? $value->mobile : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Category</label>
-                                                    
-                                                    <select class="form-control" name="category" id="category" required>
-                                                        <option selected value="<?php echo $value->product_category_id; ?>"><?php echo $value->category; ?></option>
-                                                    </select>
+                                                    <label>Phone</label>
+                                                    <input type="text" class="form-control" name="phone" value="<?php echo isset($value->phone) ? $value->phone : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="address">Address</label><br />
+                                                    <textarea style="padding: 10px;" class="col-md-12" rows="5" name="address"><?php echo isset($value->address) ? $value->address : ''; ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +93,7 @@
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                <a href="<?php echo base_url() .$this->uri->segment(1); ?>/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
+                                <a href="<?php echo base_url() . $this->uri->segment(1); ?>/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
                             </div>
 
                         <?php echo form_close(); ?>
@@ -118,32 +106,3 @@
     <!-- End Container fluid  -->
 </div>
 <!-- End Page wrapper  -->
-
-<script src="<?php echo base_url(); ?>assets/js/lib/jquery/jquery.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $("#category").select2({
-            placeholder: 'Choose Category',
-            width: '100%',
-			allowClear: true,
-            ajax: {
-                url:  "<?php echo base_url(); ?>product_category/ajax_product_category",
-                dataType: 'json',
-                type: 'GET',
-                delay: 250,
-                processResults: function (data) {
-                // console.log(data);
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.category,
-                                id: item.id
-                            }
-                        })
-                    }
-                }
-            }
-        })
-    });
-</script>

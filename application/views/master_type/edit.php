@@ -35,7 +35,7 @@
                         <h4 class="m-b-0 text-white">Edit</h4>
                     </div>
                     <div class="card-body">
-                        <?php echo form_open_multipart($this->uri->segment(1).'/update'); ?>
+                        <?php echo form_open_multipart($this->uri->segment(1) . '/update'); ?>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -46,17 +46,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Category</label>
-                                                    <input type="text" class="form-control" name="category" value="<?php echo isset($value->category) ? $value->category : ''; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Sku</label>
-                                                    <input type="text" class="form-control" name="sku" value="<?php echo isset($value->sku) ? $value->sku : ''; ?>">
+                                                    <label>Code</label>
+                                                    <input type="text" class="form-control" name="code" value="<?php echo isset($value->code) ? $value->code : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -70,20 +61,11 @@
                                             </div>
                                         </div>
                                         
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="image">Image</label><br />
-                                                    <input type="file" name="image" id="image">
-                                                    <input type="hidden" name="image_hidden" value="<?php echo isset($value->image) ? $value->image : ''; ?>">
-                                                </div>
-                                            </div>
-                                        </div> -->
-
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <img src="<?php echo isset($value->image) ? base_url() . 'uploads/product_category/' . $value->image : ''; ?>" width='300px' height='150px' alt="<?php echo $value->image; ?>">
+                                                    <label>Sku</label>
+                                                    <input type="text" class="form-control" name="sku" value="<?php echo isset($value->sku) ? $value->sku : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +75,7 @@
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                <a href="<?php echo base_url().$this->uri->segment(1); ?>/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
+                                <a href="<?php echo base_url() . $this->uri->segment(1); ?>/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
                             </div>
 
                         <?php echo form_close(); ?>
@@ -104,8 +86,5 @@
         <!-- End PAge Content -->
     </div>
     <!-- End Container fluid  -->
-
-    <?php $this->load->view($this->uri->segment(1).'/category_detail'); ?>
-
 </div>
 <!-- End Page wrapper  -->

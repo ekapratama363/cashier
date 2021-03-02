@@ -2,6 +2,9 @@
 <div class="page-wrapper">
     <!-- Bread crumb -->
     <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary"><?php echo str_replace('_', ' ', $this->uri->segment(1)); ?></h3> 
+        </div>
         <!-- <div class="col-md-5 align-self-center">
             <h3 class="text-primary">Dashboard</h3> </div>
         <div class="col-md-7 align-self-center">
@@ -46,7 +49,7 @@
                         <h4 class="m-b-0 text-white">Create</h4>
                     </div>
                     <div class="card-body">
-                        <?php echo form_open_multipart('product_category/store'); ?>
+                        <?php echo form_open_multipart($this->uri->segment(1).'/store'); ?>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -64,26 +67,35 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label>Sku</label>
+                                                    <input type="text" class="form-control" name="sku" value="<?php echo set_value('sku'); ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label for="description">Description</label><br />
                                                     <textarea style="padding: 10px;" class="col-md-12" rows="5" name="description"><?php echo set_value('description'); ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="image">Image</label><br />
                                                     <input type="file" name="image" id="image">
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                <a href="<?php echo base_url(); ?>product_category/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
+                                <a href="<?php echo base_url() . $this->uri->segment(1); ?>/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
                             </div>
 
                         <?php echo form_close(); ?>
@@ -94,5 +106,8 @@
         <!-- End PAge Content -->
     </div>
     <!-- End Container fluid  -->
+
+    <?php $this->load->view($this->uri->segment(1).'/category_detail'); ?>
+
 </div>
 <!-- End Page wrapper  -->

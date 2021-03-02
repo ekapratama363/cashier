@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Product_out extends CI_Controller {
+class Product_in extends CI_Controller {
 
     public function __construct()
     {
@@ -23,21 +23,21 @@ class Product_out extends CI_Controller {
     public function index()
     {
 
-        $data['page'] = 'product_out/index';
+        $data['page'] = 'product_in/index';
 
         $this->load->view('app', $data);
     }
 
     public function create()
     {
-        $data['page'] = 'product_out/create';
+        $data['page'] = 'product_in/create';
 
         $this->load->view('app', $data);
     }
 
     public function edit($id = NULL)
     {
-        $data['page'] = 'product_out/edit';
+        $data['page'] = 'product_in/edit';
         
         $data['value'] = $this->Product_model->get_product_by_id($id);
 
@@ -51,7 +51,7 @@ class Product_out extends CI_Controller {
         $this->form_validation->set_rules('category', 'category', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'product_out/create';
+            $data['page'] = 'product_in/create';
             $this->load->view('app', $data);
         } else {
             $filename = $_FILES['image']['name'];
@@ -152,7 +152,7 @@ class Product_out extends CI_Controller {
         $this->form_validation->set_rules('category', 'category', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'product_out/edit/'.$id;
+            $data['page'] = 'product_in/edit/'.$id;
             
             $this->load->view('app', $data);
         } else {
@@ -308,14 +308,14 @@ class Product_out extends CI_Controller {
                             "<img src='" . base_url() . "uploads/product/" . $value->image . "' width='50px' height='50px'>" 
                             : "no image";
                 $action = "
-                    <a href='".base_url()."product_out/edit/".$value->id."' 
+                    <a href='".base_url()."product_in/edit/".$value->id."' 
                         class='btn btn-success btn-sm' 
                         style='margin-right: 5px;' title='Edit'>
                         <i class='fa fa-pencil'></i>
                     </a>
 
                     <a onclick='".'return confirm("'."delete this item?".'")'."'
-                        href='".base_url()."product_out/delete/".$value->id."' class='btn btn-danger btn-sm delete-list'>
+                        href='".base_url()."product_in/delete/".$value->id."' class='btn btn-danger btn-sm delete-list'>
                         <i class='fa fa-trash'></i>
                     </a>
                 ";

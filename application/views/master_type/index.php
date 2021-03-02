@@ -5,9 +5,7 @@
         <div class="col-md-5 align-self-center">
             <h3 class="text-primary"><?php echo str_replace('_', ' ', $this->uri->segment(1)); ?></h3> 
         </div>
-        <!-- <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Dashboard</h3> </div>
-        <div class="col-md-7 align-self-center">
+        <!-- <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Invitation</a></li>
@@ -38,7 +36,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="box-header with-border">
-                    <a href="<?php echo base_url(); ?>product_category/create" class="btn btn-primary btn-sm" title="Add User"><i class="fa fa-plus"></i></a>
+                    <a href="<?php echo base_url() . $this->uri->segment(1); ?>/create" class="btn btn-primary btn-sm" title="Add User"><i class="fa fa-plus"></i></a>
                 </div>
                         
                 <div class="table-responsive m-t-40">
@@ -46,9 +44,9 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%">No</th>
-                                <th>Category</th>
+                                <th>Code</th>
                                 <th>Description</th>
-                                <th>Image</th>
+                                <th>Sku</th>
                                 <th style="width: 5%">Action</th>
                             </tr>
                         </thead>
@@ -84,7 +82,7 @@
             //  ], 
             //"scrollCollapse": true,
             "ajax": {
-                "url": "<?php echo base_url(); ?>product_category/ajax_list_product_category",
+                "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product_category",
                 "dataType": "json",
                 "type": "POST",
                 // "data": {
@@ -95,7 +93,7 @@
                 {"data": "no"},
                 {"data": "category"},
                 {"data": "description"},
-                {"data": "image"},
+                {"data": "description"},
                 {"data": "action"},
             ],
             // columnDefs : [

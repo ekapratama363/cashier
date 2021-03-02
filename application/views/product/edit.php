@@ -2,6 +2,9 @@
 <div class="page-wrapper">
     <!-- Bread crumb -->
     <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary"><?php echo str_replace('_', ' ', $this->uri->segment(1)); ?></h3> 
+        </div>
         <!-- <div class="col-md-5 align-self-center">
             <h3 class="text-primary">Dashboard</h3> </div>
         <div class="col-md-7 align-self-center">
@@ -32,7 +35,7 @@
                         <h4 class="m-b-0 text-white">Edit</h4>
                     </div>
                     <div class="card-body">
-                        <?php echo form_open_multipart('product/update'); ?>
+                        <?php echo form_open_multipart($this->uri->segment(1).'/update'); ?>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -96,13 +99,49 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Color</label>
+                                                    
+                                                    <input type="text" name="color" class="form-control" id="color">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Merk</label>
+                                                    
+                                                    <select class="form-control" name="merk" id="merk" required>
+                                                        <option value="Adidas">Adidas</option>
+                                                        <option value="Nike">Nike</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Size</label>
+                                                    
+                                                    <select class="form-control" name="size" id="size" required>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
     
                                     </div>
                                 </div>
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                <a href="<?php echo base_url(); ?>product/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
+                                <a href="<?php echo base_url() . $this->uri->segment(1); ?>/index"><button type="button" class="btn btn-inverse">Cancel</button></a>
                             </div>
 
                         <?php echo form_close(); ?>

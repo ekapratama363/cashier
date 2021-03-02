@@ -2,6 +2,9 @@
 <div class="page-wrapper">
     <!-- Bread crumb -->
     <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-primary"><?php echo str_replace('_', ' ', $this->uri->segment(1)); ?></h3> 
+        </div>
         <!-- <div class="col-md-5 align-self-center">
             <h3 class="text-primary">Dashboard</h3> </div>
         <div class="col-md-7 align-self-center">
@@ -34,12 +37,12 @@
         
         <div class="card">
             <div class="card-body">
-                <form id="formPrintOrMutlipleDelete" action="<?php echo base_url(); ?>product/print_or_multiple_delete" method="post">  
+                <form id="formPrintOrMutlipleDelete" action="<?php echo base_url() . $this->uri->segment(1); ?>/print_or_multiple_delete" method="post">  
                     
                     <div class="box-header with-border">
                         <!-- for type submit delete or print -->
                         <input type="hidden" name="type" id="type">
-                        <a href="<?php echo base_url(); ?>product/create" class="btn btn-primary btn-sm" title="Add User"><i class="fa fa-plus"></i></a>
+                        <a href="<?php echo base_url() . $this->uri->segment(1); ?>/create" class="btn btn-primary btn-sm" title="Add User"><i class="fa fa-plus"></i></a>
                     
                         <button id="deleteAll" type="button" class="btn btn-danger btn-sm" title="Multiple Delete" name="multiple_delete"><i class="fa fa-trash"></i></button>
                         <button id="printAll" type="button" class="btn btn-success btn-sm" title="Multiple Print" name="multiple_print"><i class="fa fa-file-pdf-o"></i></button>
@@ -93,7 +96,7 @@
             //  ], 
             //"scrollCollapse": true,
             "ajax": {
-                "url": "<?php echo base_url(); ?>product/ajax_list_product",
+                "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product",
                 "dataType": "json",
                 "type": "POST",
                 // "data": {

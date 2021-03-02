@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Product_out extends CI_Controller {
+class Master_group extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
-
+        
 		if($this->session->userdata('is_login') != "true"){
 			redirect(base_url("auth/login"));
         }
@@ -17,70 +17,67 @@ class Product_out extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('session');
 
-        $this->load->model('Product_model');
+        $this->load->model('Product_category_model');
     }
     
     public function index()
     {
-
-        $data['page'] = 'product_out/index';
+        $data['page'] = 'master_group/index';
 
         $this->load->view('app', $data);
     }
 
     public function create()
     {
-        $data['page'] = 'product_out/create';
+        $data['page'] = 'master_group/create';
 
         $this->load->view('app', $data);
     }
 
     public function edit($id = NULL)
     {
-        $data['page'] = 'product_out/edit';
+        $data['page'] = 'master_group/edit';
         
-        $data['value'] = $this->Product_model->get_product_by_id($id);
+        $data['value'] = $this->Product_category_model->get_product_category_by_id($id);
 
         $this->load->view('app', $data);
     }
 
     public function store()
     {
-        $this->form_validation->set_rules('title', 'title', 'required');
-        $this->form_validation->set_rules('description', 'description', 'required');
         $this->form_validation->set_rules('category', 'category', 'required');
+        $this->form_validation->set_rules('description', 'description', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'product_out/create';
+            $data['page'] = 'master_group/create';
             $this->load->view('app', $data);
         } else {
             $filename = $_FILES['image']['name'];
             $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
-            $target_dir = "uploads/product/";
+            $target_dir = "uploads/master_group/";
             $target_file = $target_dir . basename($filename);
         
             if (!$filename) {
                 
                 $data = [
-                    'title' => $this->input->post('title'),
-                    'description' => $this->input->post('description'),
-                    // 'icon' => $this->input->post('icon'),
-                    'product_category_id' => $this->input->post('category'),
+                    'category' => $this->input->post('category'),
+                    'slug' => $this->slug($this->input->post('category')),
+                    'description' => $this->input->post('description'),  
                     'image'     => '',//$_FILES['image']['name'],
                 ];
                 
-                $this->Product_model->set_product($data);
+                $this->Product_category_model->set_product_category($data);
 
                 $this->session->set_flashdata('success', 'save data successfully');
 
-                redirect(base_url("product/create"));
+                redirect(base_url("master_group/create"));
 
                 // $message = 'The image filed is required.';
 
                 // $this->session->set_flashdata('failed', $message);
 
-                // redirect(base_url("product/create"));
+                // redirect(base_url("master_group/create"));
 
             } elseif ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
                 
@@ -88,7 +85,7 @@ class Product_out extends CI_Controller {
 
                 $this->session->set_flashdata('failed', $message);
 
-                redirect(base_url("product/create"));
+                redirect(base_url("master_group/create"));
             
             } elseif ($_FILES["image"]["size"] > 2000000) {
                 
@@ -96,25 +93,26 @@ class Product_out extends CI_Controller {
 
                 $this->session->set_flashdata('failed', $message);
 
-                redirect(base_url("product/create"));
+                redirect(base_url("master_group/create"));
 
             } else {
         
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
                     $data = [
-                        'title' => $this->input->post('title'),
+                        'category' => $this->input->post('category'),
+                        'slug' => $this->slug($this->input->post('category')),
                         'description' => $this->input->post('description'),
-                        // 'icon' => $this->input->post('icon'),
-                        'product_category_id' => $this->input->post('category'),
+                        
+                        
                         'image'     => $_FILES['image']['name'],
                     ];
                     
-                    $this->Product_model->set_product($data);
+                    $this->Product_category_model->set_product_category($data);
 
                     $this->session->set_flashdata('success', 'save data successfully');
     
-                    redirect(base_url("product/create"));
+                    redirect(base_url("master_group/create"));
 
                 } else {
 
@@ -122,23 +120,21 @@ class Product_out extends CI_Controller {
 
                     $this->session->set_flashdata('failed', $message);
 
-                    redirect(base_url("product/create"));
+                    redirect(base_url("master_group/create"));
 
                 }
             }
             // $data = [
-            //     'title' => $this->input->post('title'),
+            //     'category' => $this->input->post('category'),
             //     'description' => $this->input->post('description'),
-            //     // 'icon' => $this->input->post('icon'),
-            //     'product_category_id' => $this->input->post('category'),
             //     // 'created_by' => 1,
             // ];
             
-            // $this->Product_model->set_product_detail($data);
+            // $this->Product_category_model->set_product_category($data);
 
             // $this->session->set_flashdata('success', 'save data successfully');
 
-            // redirect(base_url("product/create"));
+            // redirect(base_url("master_group/create"));
 
         }
     }
@@ -147,12 +143,11 @@ class Product_out extends CI_Controller {
     {
         $id = $this->input->post('id');
 
-        $this->form_validation->set_rules('title', 'title', 'required');
-        $this->form_validation->set_rules('description', 'description', 'required');
         $this->form_validation->set_rules('category', 'category', 'required');
+        $this->form_validation->set_rules('description', 'description', 'required');
 
         if ($this->form_validation->run() == FALSE){
-            $data['page'] = 'product_out/edit/'.$id;
+            $data['page'] = 'master_group/edit/'.$id;
             
             $this->load->view('app', $data);
         } else {
@@ -162,23 +157,22 @@ class Product_out extends CI_Controller {
             if(!$filename) {
 
                 $data = [
-                    'title' => $this->input->post('title'),
+                    'category' => $this->input->post('category'),
+                    'slug' => $this->slug($this->input->post('category')),
                     'description' => $this->input->post('description'),
-                    'product_category_id' => $this->input->post('category'),
-                    // 'icon' => $this->input->post('icon'),
                     'image' => $this->input->post('image_hidden'), //$_FILES['image']['name'],
                 ];
 
-                $this->Product_model->update_product_by_id($id, $data);
+                $this->Product_category_model->update_product_category_by_id($id, $data);
                 $this->session->set_flashdata('success', 'update data successfully');
 
-                redirect(base_url("product/index"));
+                redirect(base_url("master_group/index"));
 
             } else {
 
                 $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
-                $target_dir = "uploads/product/";
+                $target_dir = "uploads/master_group/";
                 $target_file = $target_dir . basename($filename);
             
                 if ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != "gif") {
@@ -187,7 +181,7 @@ class Product_out extends CI_Controller {
 
                     $this->session->set_flashdata('failed', $message);
 
-                    redirect(base_url("product/index"));
+                    redirect(base_url("master_group/index"));
                 
                 } elseif ($_FILES["image"]["size"] > 2000000) {
                     
@@ -195,25 +189,24 @@ class Product_out extends CI_Controller {
 
                     $this->session->set_flashdata('failed', $message);
 
-                    redirect(base_url("product/index"));
+                    redirect(base_url("master_group/index"));
 
                 } else {
 
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
                         $data = [
-                            'title' => $this->input->post('title'),
-                            'description' => $this->input->post('description'),
-                            'product_category_id' => $this->input->post('category'),
-                            // 'icon' => $this->input->post('icon'),
+                            'category' => $this->input->post('category'),
+                            'slug' => $this->slug($this->input->post('category')),
+                            'description' => $this->input->post('description'),    
                             'image' => $_FILES['image']['name'],
                         ];
                         
-                        $this->Product_model->update_product_by_id($id, $data);
+                        $this->Product_category_model->update_product_category_by_id($id, $data);
 
                         $this->session->set_flashdata('success', 'save data successfully');
         
-                        redirect(base_url("product/index"));
+                        redirect(base_url("master_group/index"));
 
                     } else {
 
@@ -221,23 +214,20 @@ class Product_out extends CI_Controller {
 
                         $this->session->set_flashdata('failed', $message);
 
-                        redirect(base_url("product/index"));
+                        redirect(base_url("master_group/index"));
 
                     }
                 }
             }
-
             // $data = [
-            //     'title' => $this->input->post('title'),
+            //     'category' => $this->input->post('category'),
             //     'description' => $this->input->post('description'),
-            //     // 'icon' => $this->input->post('icon'),
-            //     'product_category_id' => $this->input->post('category'),
             // ];
 
-            // $this->Product_model->update_product_by_id($id, $data);
+            // $this->Product_category_model->update_product_category_by_id($id, $data);
             // $this->session->set_flashdata('success', 'update data successfully');
 
-            // redirect(base_url("product/index"));
+            // redirect(base_url("master_group/index"));
 
         }
     }
@@ -247,24 +237,24 @@ class Product_out extends CI_Controller {
 
         $message = 'Success delete data';
 
-        $this->Product_model->delete_product_by_id($id);
+        $this->Product_category_model->delete_product_category_by_id($id);
 
         $this->session->set_flashdata('success', $message);
 
-        redirect(base_url("product/index"));
+        redirect(base_url("master_group/index"));
         
     }
 
-    public function ajax_product($q = NULL)
+    public function ajax_product_category($q = NULL)
     {
         $q = $this->input->get('q') ? $this->input->get('q') : NULL;
         
-        $data = $this->Product_model->ajax_get_product($q);
+        $data = $this->Product_category_model->ajax_get_product_category($q);
 
         echo json_encode($data);
     }
 
-    public function ajax_list_product()
+    public function ajax_list_product_category()
     {
         $draw   = $this->input->post('draw');
         $start  = $this->input->post('start');
@@ -276,7 +266,6 @@ class Product_out extends CI_Controller {
         $dir = isset($this->input->post('order')[0]['dir']) ? $this->input->post('order')[0]['dir'] : '';
         
         $array = [];
-        
         if($searchTerms) {
             foreach($searchTerms as $searchTerm){
                 $array['search'] = $searchTerm;
@@ -287,7 +276,7 @@ class Product_out extends CI_Controller {
             $array['order'] = 'desc';
         }
 
-        $totalFiltered = count($this->Product_model->get_ajax_list_product($array));
+        $totalFiltered = count($this->Product_category_model->get_ajax_list_product_category($array));
 
         //check the length parameter and then take records
         if ($length > 0) {
@@ -295,42 +284,37 @@ class Product_out extends CI_Controller {
             $array['length'] = $length;
         }
 
-        $posts = $this->Product_model->get_ajax_list_product($array);
+        $posts = $this->Product_category_model->get_ajax_list_product_category($array);
 
         if(sizeof($posts) > 0) {
             $no = $start;
             foreach($posts as $key => $value) {        
                 $no++;
 
-                $check_box = "<input type='checkbox' id='data' name='data[]' class='checkboxes' value='{$value->id}' />";
+                $image = "<img src='" . base_url() . "uploads/master_group/" . $value->image . "' width='50px' height='50px'>";
                 
-                $image = ($value->image != '') ? 
-                            "<img src='" . base_url() . "uploads/product/" . $value->image . "' width='50px' height='50px'>" 
-                            : "no image";
                 $action = "
-                    <a href='".base_url()."product_out/edit/".$value->id."' 
+                    <a href='".base_url()."master_group/edit/".$value->id."' 
                         class='btn btn-success btn-sm' 
                         style='margin-right: 5px;' title='Edit'>
                         <i class='fa fa-pencil'></i>
                     </a>
 
                     <a onclick='".'return confirm("'."delete this item?".'")'."'
-                        href='".base_url()."product_out/delete/".$value->id."' class='btn btn-danger btn-sm delete-list'>
+                        href='".base_url()."master_group/delete/".$value->id."' class='btn btn-danger btn-sm delete-list'>
                         <i class='fa fa-trash'></i>
                     </a>
                 ";
 
                 $posts[$key]->no = $no;
-                $posts[$key]->check_box = $check_box;
                 $posts[$key]->description = '<p data-toggle="tooltip" data-placement="bottom" title="'.$value->description.'">' . substr($value->description, 0, 20) . '...</p>';
+                
                 $posts[$key]->image = $image;
                 $posts[$key]->action = $action;
             }
         }
 
         $json_data = [
-            "start"            => $start,
-            "length"            => $length,
             "draw"            => $draw,
             "recordsTotal"    => $totalFiltered,
             "recordsFiltered" => $totalFiltered,
@@ -340,47 +324,23 @@ class Product_out extends CI_Controller {
         echo json_encode($json_data);
     }
 
-    public function print_or_multiple_delete()
+    public function slug($text)
     {
-        $type     = $this->input->post('type');
-        $array_id = $this->input->post('data');
-
-        if($type == 'print') {
-
-            $this->QRCode($array_id);
-
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+        // trim
+        $text = trim($text, '-');
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        // lowercase
+        $text = strtolower($text);
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+        if (empty($text))
+        {
+            return 'n-a';
         }
-
-        if($type == 'delete') {
-
-            $delete = $this->Product_model->update_product_by_array_id($array_id);
-
-            if($delete) {
-                $this->session->set_flashdata('success', 'delete data successfully');
-                redirect(base_url("product/index"));
-            } else {
-                $this->session->set_flashdata('failed', 'delete data failed');
-                redirect(base_url("product/index"));
-            }
-        }
+        return $text;
     }
 
-    public function QRCode($array_id = NULL)
-    {   
-        $products = [];
-
-        foreach($array_id as $id) {
-            $products[] = $this->Product_model->get_product_by_id($id);
-        }
-
-        $data['products'] = $products; 
-        
-        $this->load->library('Pdf');
-        
-        $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "ProductQRCode.pdf";
-
-        $this->pdf->load_view("product/report/qrCode", $data);
-        // $this->load->view("product/report/qrCode", $data);
-    }
 }

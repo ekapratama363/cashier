@@ -18,17 +18,19 @@
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-tasks"></i><span class="hide-menu">Master</span></a>
                     <ul aria-expanded="false" class="collapse">
+                        <!-- <li><a href="<?php echo base_url(); ?>master_type">Master Type</a></li> -->
+                        <!-- <li><a href="<?php echo base_url(); ?>master_group">Master Group</a></li> -->
                         <li><a href="<?php echo base_url(); ?>product_category">Product Category</a></li>
                         <li><a href="<?php echo base_url(); ?>product">Product</a></li>
-                        <li><a href="<?php echo base_url(); ?>product">Supplier</a></li>
-                        <li><a href="<?php echo base_url(); ?>product">Customer</a></li>
+                        <li><a href="<?php echo base_url(); ?>supplier">Supplier</a></li>
+                        <li><a href="<?php echo base_url(); ?>customer">Customer</a></li>
                     </ul>
                 </li>
 
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu">Transaction</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>product_out">Product In</a></li>
+                        <li><a href="<?php echo base_url(); ?>product_in">Product In</a></li>
                         <li><a href="<?php echo base_url(); ?>product_out">Product Out</a></li>
                     </ul>
                 </li>
@@ -44,8 +46,8 @@
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-pie-chart"></i><span class="hide-menu">Report</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>product_in">Product In</a></li>
-                        <li><a href="<?php echo base_url(); ?>product_out">Product Out</a></li>
+                        <!-- <li><a href="<?php echo base_url(); ?>product_in">Product In</a></li>
+                        <li><a href="<?php echo base_url(); ?>product_out">Product Out</a></li> -->
                     </ul>
                 </li>
 
