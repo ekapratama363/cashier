@@ -34,6 +34,7 @@ class ComposerStaticInit4cfd854e791128c64eb338f0bf11ed94
         'P' => 
         array (
             'Prophecy\\' => 9,
+            'PhpOption\\' => 10,
         ),
         'F' => 
         array (
@@ -41,6 +42,7 @@ class ComposerStaticInit4cfd854e791128c64eb338f0bf11ed94
         ),
         'D' => 
         array (
+            'Dotenv\\' => 7,
             'Dompdf\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
@@ -82,9 +84,17 @@ class ComposerStaticInit4cfd854e791128c64eb338f0bf11ed94
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'FontLib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Dompdf\\' => 
         array (
