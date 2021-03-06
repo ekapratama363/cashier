@@ -36,7 +36,7 @@
 </div>
 
 <script src="<?php echo base_url(); ?>assets/js/lib/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/lib/chartjs/dist/Chart.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/lib/chartjs/dists/Chart.js"></script>
 
 <script>
 
