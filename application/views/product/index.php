@@ -49,7 +49,8 @@
                     </div>
                             
                     <div class="table-responsive m-t-40">
-                        <table id="myTable" class="table table-bordered table-striped">
+                        <!-- <table id="myTable" class="table table-bordered table-striped"> -->
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th style="width: 5%"><input type="checkbox" id="checkAll" class="customcheck"></th>        
@@ -63,6 +64,54 @@
                                     <th style="width: 5%">Action</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type='checkbox' id='data' name='data[]' class='checkboxes' value='' /></td>
+                                <td>1</td>
+                                <td>Baju Pria Nike</td>
+                                <td>Baju Pria Nike Original</td>
+                                <td>Baju Pria (BJP)</td>
+                                <td>
+                                    <img src='<?php echo base_url() ?>assets/images/bg.jpg' width='50px' height='50px'>
+                                </td>
+                                <td>
+                                    <a href="<?php echo base_url(). 'product/edit/1' ; ?>" 
+                                        class='btn btn-success btn-sm' 
+                                        style='margin-right: 5px;' title='Edit'>
+                                        <i class='fa fa-pencil'></i>
+                                    </a>
+
+                                    <a onclick="return confirm('delete this item?')"
+                                        href="<?php echo base_url(). 'product/delete/1' ; ?>" 
+                                        class='btn btn-danger btn-sm delete-list'>
+                                        <i class='fa fa-trash'></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type='checkbox' id='data' name='data[]' class='checkboxes' value='' /></td>
+                                <td>2</td>
+                                <td>Baju Wanita Nike</td>
+                                <td>Baju Wanita Nike Original</td>
+                                <td>Baju Wanita (BJW)</td>
+                                <td>
+                                    <img src='<?php echo base_url() ?>assets/images/bg-1.png' width='50px' height='50px'>
+                                </td>
+                                <td>
+                                    <a href="<?php echo base_url(). 'product/edit/1' ; ?>" 
+                                        class='btn btn-success btn-sm' 
+                                        style='margin-right: 5px;' title='Edit'>
+                                        <i class='fa fa-pencil'></i>
+                                    </a>
+
+                                    <a onclick="return confirm('delete this item?')"
+                                        href="<?php echo base_url(). 'product/delete/1' ; ?>" 
+                                        class='btn btn-danger btn-sm delete-list'>
+                                        <i class='fa fa-trash'></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
                         </table>
                     </div>
                 </form>
@@ -79,50 +128,50 @@
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            // "scrollY": "400px",
-            // "scrollX": "700px",
-            // "scrollX": true,
-            //"scrollCollapse": true,
-            "processing": true,
-            "serverSide": true,
-            "pageLength": 10,
-            // "responsive": true,
-            // "scrollCollapse": true,
-            // "columnDefs": [    
-            //    {                                 
-            //        "targets": '_all',
-            //        "render": $.fn.dataTable.render.text()
-            //    }    
-            //  ], 
-            //"scrollCollapse": true,
-            "ajax": {
-                "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product",
-                "dataType": "json",
-                "type": "POST",
-                // "data": {
-                //     _token: "{{csrf_token()}}",
-                // }
-            },
-            "columns": [
-                {"data": "check_box"},
-                {"data": "no"},
-                {"data": "title"},
-                {"data": "description"},
-                // {"data": "icon"},
-                {"data": "category"},
-                {"data": "image"},
-                // {"data": "page"},
-                {"data": "action"},
-            ],
-            columnDefs : [
-                // { 
-                //     "className": "invoice", 
-                //     "targets" : [0, 3],//first column / numbering column
-                // }
-                { "orderable": false, "targets": [0] },
-                // { "orderable": true, "targets": [1, 2, 3] }
-            ],   
-            "order": [],  
+            // // "scrollY": "400px",
+            // // "scrollX": "700px",
+            // // "scrollX": true,
+            // //"scrollCollapse": true,
+            // "processing": true,
+            // "serverSide": true,
+            // "pageLength": 10,
+            // // "responsive": true,
+            // // "scrollCollapse": true,
+            // // "columnDefs": [    
+            // //    {                                 
+            // //        "targets": '_all',
+            // //        "render": $.fn.dataTable.render.text()
+            // //    }    
+            // //  ], 
+            // //"scrollCollapse": true,
+            // "ajax": {
+            //     "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product",
+            //     "dataType": "json",
+            //     "type": "POST",
+            //     // "data": {
+            //     //     _token: "{{csrf_token()}}",
+            //     // }
+            // },
+            // "columns": [
+            //     {"data": "check_box"},
+            //     {"data": "no"},
+            //     {"data": "title"},
+            //     {"data": "description"},
+            //     // {"data": "icon"},
+            //     {"data": "category"},
+            //     {"data": "image"},
+            //     // {"data": "page"},
+            //     {"data": "action"},
+            // ],
+            // columnDefs : [
+            //     // { 
+            //     //     "className": "invoice", 
+            //     //     "targets" : [0, 3],//first column / numbering column
+            //     // }
+            //     { "orderable": false, "targets": [0] },
+            //     // { "orderable": true, "targets": [1, 2, 3] }
+            // ],   
+            // "order": [],  
 
         });
 

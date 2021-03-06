@@ -49,7 +49,7 @@ class Auth extends CI_Controller {
                     ];
 
                     $this->session->set_userdata($data);
-                    redirect(base_url("product"));
+                    redirect(base_url("report/dashboard"));
                 } else {
                     $this->session->set_flashdata('error', 'email or password incorrect');
                     $this->load->view('auth/login');

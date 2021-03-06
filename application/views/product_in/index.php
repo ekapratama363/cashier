@@ -55,15 +55,39 @@
                                 <tr>
                                     <th style="width: 5%"><input type="checkbox" id="checkAll" class="customcheck"></th>        
                                     <th style="width: 5%">No</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <!-- <th>Icon</th> -->
-                                    <th>Category</th>
-                                    <th>Image</th>
-                                    <!-- <th>Page</th> -->
-                                    <!-- <th style="width: 5%">Action</th> -->
+                                    <th>Transaction Number</th>
+                                    <th>Product Code</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th>Created by</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="" id=""></td>
+                                    <td>1</td>
+                                    <td>TR12345</td>
+                                    <td>BJG</td>
+                                    <td>Baju Gamis</td>
+                                    <td>100.000</td>
+                                    <td>2</td>
+                                    <td>200.000</td>
+                                    <td>Admin</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" id=""></td>
+                                    <td>1</td>
+                                    <td>TR12344</td>
+                                    <td>BJGA</td>
+                                    <td>Baju Gamis Anak</td>
+                                    <td>100.000</td>
+                                    <td>2</td>
+                                    <td>200.000</td>
+                                    <td>Admin</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </form>
@@ -80,50 +104,50 @@
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            // "scrollY": "400px",
-            // "scrollX": "700px",
-            // "scrollX": true,
-            //"scrollCollapse": true,
-            "processing": true,
-            "serverSide": true,
-            "pageLength": 10,
-            // "responsive": true,
-            // "scrollCollapse": true,
-            // "columnDefs": [    
-            //    {                                 
-            //        "targets": '_all',
-            //        "render": $.fn.dataTable.render.text()
-            //    }    
-            //  ], 
-            //"scrollCollapse": true,
-            "ajax": {
-                "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product",
-                "dataType": "json",
-                "type": "POST",
-                // "data": {
-                //     _token: "{{csrf_token()}}",
-                // }
-            },
-            "columns": [
-                {"data": "check_box"},
-                {"data": "no"},
-                {"data": "title"},
-                {"data": "description"},
-                // {"data": "icon"},
-                {"data": "category"},
-                {"data": "image"},
-                // {"data": "page"},
-                // {"data": "action"},
-            ],
-            columnDefs : [
-                // { 
-                //     "className": "invoice", 
-                //     "targets" : [0, 3],//first column / numbering column
-                // }
-                { "orderable": false, "targets": [0] },
-                // { "orderable": true, "targets": [1, 2, 3] }
-            ],   
-            "order": [],  
+            // // "scrollY": "400px",
+            // // "scrollX": "700px",
+            // // "scrollX": true,
+            // //"scrollCollapse": true,
+            // "processing": true,
+            // "serverSide": true,
+            // "pageLength": 10,
+            // // "responsive": true,
+            // // "scrollCollapse": true,
+            // // "columnDefs": [    
+            // //    {                                 
+            // //        "targets": '_all',
+            // //        "render": $.fn.dataTable.render.text()
+            // //    }    
+            // //  ], 
+            // //"scrollCollapse": true,
+            // "ajax": {
+            //     "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product",
+            //     "dataType": "json",
+            //     "type": "POST",
+            //     // "data": {
+            //     //     _token: "{{csrf_token()}}",
+            //     // }
+            // },
+            // "columns": [
+            //     {"data": "check_box"},
+            //     {"data": "no"},
+            //     {"data": "title"},
+            //     {"data": "description"},
+            //     // {"data": "icon"},
+            //     {"data": "category"},
+            //     {"data": "image"},
+            //     // {"data": "page"},
+            //     // {"data": "action"},
+            // ],
+            // columnDefs : [
+            //     // { 
+            //     //     "className": "invoice", 
+            //     //     "targets" : [0, 3],//first column / numbering column
+            //     // }
+            //     { "orderable": false, "targets": [0] },
+            //     // { "orderable": true, "targets": [1, 2, 3] }
+            // ],   
+            // "order": [],  
 
         });
 

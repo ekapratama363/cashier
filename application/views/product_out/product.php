@@ -19,12 +19,12 @@
                 <tr>
                     <th class="text-center" style="width:25px;">No</th>
                     <th class="text-center" style="width:250px;">Product Code</th>
+                    <th class="text-center" style="width:15px;"></th>
                     <th class="text-center" style="width:200px;">Product Name</th>
                     <th class="text-center" style="width:400px;">Description</th>
                     <th class="text-center" style="width:50;">Price</th>
                     <th class="text-right" style="width:25px;">Quantity</th>
                     <th class="text-right" style="width:150px;">Subtotal</th>
-                    <th class="text-center" style="width:15px;"></th>
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +41,10 @@
                         <select class="product_id" onchange="onChangeProduct(1, this)" name="product_id[1]"
                             id="product_id1" style="float:left; width: 100%; height: 27px" required>
                         </select>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm"
+                            onclick="deleteRowProductTable(this)">Remove</button>
                     </td>
                     <td>
                         <input type="text" name="name[1]" id="name1" style="float:left; width: 100%; border: none"
@@ -67,10 +71,6 @@
                             style="text-align:right; width: 100%; border: none; padding: 10px"
                             onchange="updateTotalPrice(1, this)"
                             required readonly>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm"
-                            onclick="deleteRowProductTable(this)">Remove</button>
                     </td>
                 </tr>
             </tbody>
@@ -159,41 +159,41 @@
                             required>
                         </select>`;
 
-        cell3.innerHTML = `<input type="text" 
+        cell3.innerHTML = `<button type="button" class="btn btn-danger btn-sm" onclick="deleteRowProductTable(this)">Remove</button>`;
+
+        cell4.innerHTML = `<input type="text" 
                             name="name[${index}]" 
                             id="name${index}" 
                             style="float:left; width: 100%; border: none"
                             required readonly>`;
 
 
-        cell4.innerHTML = `<input type="text" 
+        cell5.innerHTML = `<input type="text" 
                             name="description[${index}]" 
                             id="description${index}" 
                             style="float:left; width: 100%; border: none"
                             required readonly>`
 
-        cell5.innerHTML = ` <input type="text" 
+        cell6.innerHTML = ` <input type="text" 
                             name="price[${index}]" 
                             id="price${index}" 
                             value="300"
                             style="text-align:right; width: 100%; border: none; padding: 10px"
                             required readonly>`;
 
-        cell6.innerHTML = `<input type="number" 
+        cell7.innerHTML = `<input type="number" 
                             name="quantity[${index}]" 
                             id="quantity${index}" 
                             style="text-align:right; width: 100%;"
                             onkeyup="updateTotalPrice(${index}, this)"
                             required>`;
 
-        cell7.innerHTML = ` <input type="text" 
+        cell8.innerHTML = ` <input type="text" 
                             name="subtotal[${index}]" 
                             id="subtotal${index}" 
                             onchange="updateTotalPrice(${index}, this)"
                             style="text-align:right; width: 100%; border: none; padding: 10px"
                             required readonly>`;
-
-        cell8.innerHTML = `<button type="button" class="btn btn-danger btn-sm" onclick="deleteRowProductTable(this)">Remove</button>`;
 
         loadSelect2(index);
     }
@@ -208,6 +208,8 @@
         }
 
         product_id.select2({
+            // allowClear: true,
+            // placeholder: "Choose product",
             ajax: {
                 url: '<?php echo base_url(); ?>product/ajax_product',
                 dataType: 'json',

@@ -50,6 +50,46 @@
                                 <th style="width: 5%">Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Pembeli 1</td>
+                                <td>Pembeli 1</td>
+                                <td>C01</td>
+                                <td>
+                                    <a href="<?php echo base_url(). 'customer/edit/1' ; ?>" 
+                                        class='btn btn-success btn-sm' 
+                                        style='margin-right: 5px;' title='Edit'>
+                                        <i class='fa fa-pencil'></i>
+                                    </a>
+
+                                    <a onclick="return confirm('delete this item?')"
+                                        href="<?php echo base_url(). 'customer/delete/1' ; ?>" 
+                                        class='btn btn-danger btn-sm delete-list'>
+                                        <i class='fa fa-trash'></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Pembeli 2</td>
+                                <td>Pembeli 2</td>
+                                <td>C02</td>
+                                <td>
+                                    <a href="<?php echo base_url(). 'customer/edit/1' ; ?>" 
+                                        class='btn btn-success btn-sm' 
+                                        style='margin-right: 5px;' title='Edit'>
+                                        <i class='fa fa-pencil'></i>
+                                    </a>
+
+                                    <a onclick="return confirm('delete this item?')"
+                                        href="<?php echo base_url(). 'customer/delete/1' ; ?>" 
+                                        class='btn btn-danger btn-sm delete-list'>
+                                        <i class='fa fa-trash'></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -65,43 +105,43 @@
 <script>
     $(document).ready(function(){
         $('#myTable').dataTable({
-            // "scrollY": "400px",
-            // "scrollX": "700px",
-            // "scrollX": true,
-            //"scrollCollapse": true,
-            "processing": true,
-            "serverSide": true,
-            "pageLength": 10,
-            // "responsive": true,
-            // "scrollCollapse": true,
-            // "columnDefs": [    
-            //    {                                 
-            //        "targets": '_all',
-            //        "render": $.fn.dataTable.render.text()
-            //    }    
-            //  ], 
-            //"scrollCollapse": true,
-            "ajax": {
-                "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product_category",
-                "dataType": "json",
-                "type": "POST",
-                // "data": {
-                //     _token: "{{csrf_token()}}",
-                // }
-            },
-            "columns": [
-                {"data": "no"},
-                {"data": "category"},
-                {"data": "description"},
-                {"data": "description"},
-                {"data": "action"},
-            ],
-            // columnDefs : [
-            //     { 
-            //         "className": "invoice", 
-            //         "targets" : [0, 3],//first column / numbering column
-            //     }
-            // ],   
+            // // "scrollY": "400px",
+            // // "scrollX": "700px",
+            // // "scrollX": true,
+            // //"scrollCollapse": true,
+            // "processing": true,
+            // "serverSide": true,
+            // "pageLength": 10,
+            // // "responsive": true,
+            // // "scrollCollapse": true,
+            // // "columnDefs": [    
+            // //    {                                 
+            // //        "targets": '_all',
+            // //        "render": $.fn.dataTable.render.text()
+            // //    }    
+            // //  ], 
+            // //"scrollCollapse": true,
+            // "ajax": {
+            //     "url": "<?php echo base_url() . $this->uri->segment(1); ?>/ajax_list_product_category",
+            //     "dataType": "json",
+            //     "type": "POST",
+            //     // "data": {
+            //     //     _token: "{{csrf_token()}}",
+            //     // }
+            // },
+            // "columns": [
+            //     {"data": "no"},
+            //     {"data": "category"},
+            //     {"data": "description"},
+            //     {"data": "description"},
+            //     {"data": "action"},
+            // ],
+            // // columnDefs : [
+            // //     { 
+            // //         "className": "invoice", 
+            // //         "targets" : [0, 3],//first column / numbering column
+            // //     }
+            // // ],   
 
         });
 

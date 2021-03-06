@@ -44,46 +44,31 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%">No</th>
-                                <th>Code</th>
-                                <th>Description</th>
-                                <th>Sku</th>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
                                 <th style="width: 5%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>PLOM</td>
-                                <td>PT. Lorem Ipsum</td>
-                                <td>S01</td>
+                                <td>ekapratama</td>
+                                <td>Eka Pratama</td>
+                                <td>ekapratama363@gmail.com</td>
+                                <td>0896-3015-8851</td>
+                                <td>Admin</td>
                                 <td>
-                                    <a href="<?php echo base_url(). 'supplier/edit/1' ; ?>" 
+                                    <a href="<?php echo base_url(). 'customer/edit/1' ; ?>" 
                                         class='btn btn-success btn-sm' 
                                         style='margin-right: 5px;' title='Edit'>
                                         <i class='fa fa-pencil'></i>
                                     </a>
 
                                     <a onclick="return confirm('delete this item?')"
-                                        href="<?php echo base_url(). 'supplier/delete/1' ; ?>" 
-                                        class='btn btn-danger btn-sm delete-list'>
-                                        <i class='fa fa-trash'></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Adidas</td>
-                                <td>PT. Adidas</td>
-                                <td>S02</td>
-                                <td>
-                                    <a href="<?php echo base_url(). 'supplier/edit/1' ; ?>" 
-                                        class='btn btn-success btn-sm' 
-                                        style='margin-right: 5px;' title='Edit'>
-                                        <i class='fa fa-pencil'></i>
-                                    </a>
-
-                                    <a onclick="return confirm('delete this item?')"
-                                        href="<?php echo base_url(). 'supplier/delete/1' ; ?>" 
+                                        href="<?php echo base_url(). 'customer/delete/1' ; ?>" 
                                         class='btn btn-danger btn-sm delete-list'>
                                         <i class='fa fa-trash'></i>
                                     </a>

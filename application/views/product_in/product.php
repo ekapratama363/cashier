@@ -149,6 +149,8 @@
                 value="${lastRowIndex + 1}" 
                 readonly
                 style="text-align:center; border: none; width: 100%";>
+                
+                <button type="button" class="btn btn-danger btn-sm" onclick="deleteRowProductTable(this)">Remove</button>
         `;
 
         cell2.innerHTML = `<select class="product_id${index}"
@@ -208,6 +210,8 @@
         }
 
         product_id.select2({
+            // allowClear: true,
+            // placeholder: "Choose product",
             ajax: {
                 url: '<?php echo base_url(); ?>product/ajax_product',
                 dataType: 'json',

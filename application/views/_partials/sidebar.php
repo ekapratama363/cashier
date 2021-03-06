@@ -30,8 +30,10 @@
                 <li> 
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu">Transaction</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>product_in">Product In</a></li>
-                        <li><a href="<?php echo base_url(); ?>product_out">Product Out</a></li>
+                        <li><a href="<?php echo base_url(); ?>product_in/create">Product In Create</a></li>
+                        <li><a href="<?php echo base_url(); ?>product_in">Product In List</a></li>
+                        <li><a href="<?php echo base_url(); ?>product_out/create">Product Out Create</a></li>
+                        <li><a href="<?php echo base_url(); ?>product_out">Product Out List</a></li>
                     </ul>
                 </li>
 
